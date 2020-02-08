@@ -1,6 +1,5 @@
 language: python
 dist: xenial
-
 matrix:
   include:
   - python: '3.5'
@@ -9,27 +8,25 @@ matrix:
     env: NOXSESSION="tests-3.6"
   - python: '3.7'
     env: NOXSESSION="tests-3.7"
-    sudo: required  # required for Python 3.7 (github.com/travis-ci/travis-ci#9069)
+    sudo: required
   - python: '3.8'
     env: NOXSESSION="tests-3.8"
   - python: '3.6'
     env: NOXSESSION="docs"
-
 install:
-- ./.travis/install.sh
-
+- "./.travis/install.sh"
 script:
 - python3 -m nox --session "$NOXSESSION"
 - python3 -m nox -e distribution
-
 deploy:
   on:
     tags: true
-    python: '3.6'  # only run this deploy once with python 3.6
+    python: '3.6'
   provider: pypi
-  distributions: 'sdist bdist_wheel'
-  user: __token__  # api token encrypted within travis
+  distributions: sdist bdist_wheel
+  user: __token__
   skip_existing: true
-
+  password:
+    secure: HVU7pZRtXlExtYocQBxjzJY2n9XgSO+piHx21E4FGLmHvuK373wA2gi/hEt+RHfQanVWpJOglytK1ljKq3mhUmWbgzpb4J71helDK9nxsNAkNedyMivP2nlO9XI3Zm8oP0Mk4KnwCFM1SOIvBBYdOXi23wdUZwM09fHIZeTcPZSsglkAw4v227BkPvnSG+c9L+RZe2jmyiNa8HtpXX2JVyf1rKpZPtdnoW9TNPCUfN6Z5/yKJ1FdM074gQsR22TmjhcTIcDI9Ep7Wikgn6Fw6nlRTX5p+e84j9M5dp0owN1kzXWXN+8hl/R+jyUCyTyb0sb46DE6w9YQs2HmarZdxlOWkJm9ozRaDprNRvZgMfecgFZQrCmpPPFdnLI6TVSsyxdXej7ItJZbbod0vvyJ7uY+McTKybnvUtJoNNIDfra3nHQ7zJpubFijYpNSJxD21VvwMHsT115utoinfL2idknyeRI8Pc2LCAPFStmkTnKfXtacNH7DA82XmaakV/EMTglWG1ecba1gbe06HJo7ci6DWTdiLO+w95KisZAhtvAyMPyM5Qo11tBh0ZtoRTo/Q8epP1wmiXxMvP+S82WePC8kH+kMOW0ZR75B1ki5keNEgSUzldtseBEdaZA5jEvsS7z4ce7yOweqj7foRwQp7xJrTvzaxI7DBOXUuRNwdVA=
 notifications:
   email: false
