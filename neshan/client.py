@@ -251,6 +251,12 @@ class Client(object):
 
         body = response.json()
 
+        api_status = body.get("status", None)
+        if api_status:
+            code = body.get('code')
+            message = body.get('message')
+            raise neshan.exceptions.ApiError(code, message)
+
         return body
 
 
