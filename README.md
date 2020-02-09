@@ -1,4 +1,4 @@
-Python Client for Google Maps Services
+Python Client for Neshan Services
 ====================================
 
 [![Build Status](https://travis-ci.com/nshayanfar/neshan-services-python.svg?branch=master)](https://travis-ci.org/googlemaps/google-maps-services-python)

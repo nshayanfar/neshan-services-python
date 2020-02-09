@@ -1,4 +1,4 @@
-Python Client for Google Maps Services
+Python Client for Neshan Services
 ======================================
 
 :mod:`neshan` Module
