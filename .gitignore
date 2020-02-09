@@ -34,3 +34,4 @@ neshan.egg-info
 *.egg
 .vscode/
 .idea/
+.pypirc

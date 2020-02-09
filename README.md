@@ -2,8 +2,7 @@ Python Client for Google Maps Services
 ====================================
 
 [![Build Status](https://travis-ci.com/nshayanfar/neshan-services-python.svg?branch=master)](https://travis-ci.org/googlemaps/google-maps-services-python)
-[![codecov](https://codecov.io/gh/googlemaps/google-maps-services-python/branch/master/graph/badge.svg)](https://codecov.io/gh/googlemaps/google-maps-services-python)
-[![PyPI version](https://badge.fury.io/py/googlemaps.svg)](https://badge.fury.io/py/googlemaps)
+[![PyPI version](https://badge.fury.io/py/neshan.svg)](https://badge.fury.io/py/neshan.svg)
 
 ## Description
 
@@ -20,7 +19,7 @@ APIs:
 
 ## Requirements
 
- - Python 3.6 or later.
+ - Python 3.5 or later.
  - A Neshan API key.
 
 ## Installation
