@@ -50,23 +50,23 @@ class DirectionsTest(_test.TestCase):
                             '?origin=36.268706,59.610011&destination=36.287607,59.599527',
                             responses.calls[0].request.url)
 
-    @responses.activate
-    def test_zero_results_returns_response(self):
-        responses.add(responses.GET,
-                      'https://api.neshan.org/v2/direction',
-                      body='{"status":"ZERO_RESULTS","routes":[]}',
-                      status=200,
-                      content_type='application/json;charset=UTF-8')
+    # @responses.activate
+    # def test_zero_results_returns_response(self):
+    #     responses.add(responses.GET,
+    #                   'https://api.neshan.org/v2/direction',
+    #                   body='{"status":"ZERO_RESULTS","routes":[]}',
+    #                   status=200,
+    #                   content_type='application/json;charset=UTF-8')
 
-        routes = self.client.directions("Toledo", "Madrid")
-        self.assertIsNotNone(routes)
-        self.assertEqual(0, len(routes))
+    #     routes = self.client.directions("Toledo", "Madrid")
+    #     self.assertIsNotNone(routes)
+    #     self.assertEqual(0, len(routes))
 
     @responses.activate
     def test_alternatives(self):
         responses.add(responses.GET,
                       'https://api.neshan.org/v2/direction',
-                      body='{"status":"OK","routes":[]}',
+                      body='{"routes":[]}',
                       status=200,
                       content_type='application/json;charset=UTF-8')
 

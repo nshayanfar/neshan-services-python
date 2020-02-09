@@ -74,5 +74,5 @@ class GeocodingTest(_test.TestCase):
 
         self.assertEqual(1, len(responses.calls))
         self.assertURLEqual('https://api.neshan.org/v2/reverse?'
-                            'lat=40.714224%%26lng=-73.961452',
+                            'lat=40.714224&lng=-73.961452',
                             responses.calls[0].request.url)

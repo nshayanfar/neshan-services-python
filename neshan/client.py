@@ -206,7 +206,8 @@ class Client(object):
             final_requests_kwargs["json"] = post_json
 
         try:
-            response = requests_method(base_url+url, **final_requests_kwargs)
+            generated_url = self._generate_url(base_url+url, params)
+            response = requests_method(generated_url, **final_requests_kwargs)
         except requests.exceptions.Timeout:
             raise neshan.exceptions.Timeout()
         except Exception as e:
@@ -252,12 +253,22 @@ class Client(object):
         body = response.json()
 
         api_status = body.get("status", None)
-        if api_status:
+        if api_status and api_status.lower() != 'ok':
             code = body.get('code')
             message = body.get('message')
             raise neshan.exceptions.ApiError(code, message)
 
         return body
+
+
+    def _generate_url(self,path, params):
+        extra_params = getattr(self, "_extra_params", None) or {}
+        if type(params) is dict:
+            params = sorted(dict(extra_params, **params).items())
+        else:
+            params = sorted(extra_params.items()) + params[:]    
+        path = "?".join([path, urlencode_params(params)])
+        return path
 
 
 def make_api_method(func):

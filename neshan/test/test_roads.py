@@ -43,7 +43,7 @@ class RoadsTest(_test.TestCase):
 
         self.assertEqual(1, len(responses.calls))
         self.assertURLEqual("https://api.neshan.org/v1/map-matching?"
-                            "path=40.714728%%2C-73.998672",
+                            "path=40.714728%2C-73.998672",
                             responses.calls[0].request.url)
 
     # @responses.activate
