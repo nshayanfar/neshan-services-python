@@ -16,6 +16,7 @@ with io.open("CHANGELOG.md", encoding="utf8") as f:
 setup(
     name="neshan",
     version="1.0.0",
+    author='Nima Shayanfar',
     description="Python client library for Neshan maps",
     long_description=readme + changelog,
     long_description_content_type="text/markdown",
