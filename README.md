@@ -44,8 +44,7 @@ reverse_geocode_result = nmaps.reverse_geocode((40.714224, -73.961452))
 # Request directions via public transit
 now = datetime.now()
 directions_result = nmaps.direction((36.268706, 59.610011),
-                                    (36.287607, 59.599527),
-                                    departure_time=now)
+                                    (36.287607, 59.599527))
 ```
 
 ## Features
