@@ -11,6 +11,7 @@ This library is a duplication of https://github.com/googlemaps/google-maps-servi
 The Python Client for Neshan Services is a Python Client library for the following Neshan
 APIs:
 
+ - Static Maps
  - Directions API
  - Distance Matrix API
  - Reverse Geocoding API
