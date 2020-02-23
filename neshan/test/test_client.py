@@ -1,7 +1,4 @@
 #
-# Copyright 2014 Google Inc. All rights reserved.
-#
-#
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not
 # use this file except in compliance with the License. You may obtain a copy of
 # the License at
@@ -27,7 +24,6 @@ import uuid
 import neshan
 import neshan.client as _client
 import neshan.test as _test
-from neshan.client import _X_GOOG_MAPS_EXPERIENCE_ID
 
 
 class ClientTest(_test.TestCase):

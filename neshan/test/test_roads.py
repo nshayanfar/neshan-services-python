@@ -1,7 +1,4 @@
 #
-# Copyright 2015 Google Inc. All rights reserved.
-#
-#
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not
 # use this file except in compliance with the License. You may obtain a copy of
 # the License at
@@ -31,14 +28,14 @@ class RoadsTest(_test.TestCase):
         self.client = neshan.Client(self.key)
 
     @responses.activate
-    def test_snap(self):
+    def test_map_matching(self):
         responses.add(responses.GET,
                       "https://api.neshan.org/v1/map-matching",
                       body='{"snappedPoints":["foo"]}',
                       status=200,
                       content_type="application/json")
 
-        results = self.client.snap_to_roads((40.714728, -73.998672))
+        results = self.client.map_matching((40.714728, -73.998672))
         self.assertEqual("foo", results[0])
 
         self.assertEqual(1, len(responses.calls))

@@ -1,7 +1,7 @@
 Python Client for Neshan Services
 ====================================
 
-[![Build Status](https://travis-ci.com/nshayanfar/neshan-services-python.svg?branch=master)](https://travis-ci.org/googlemaps/google-maps-services-python)
+[![Build Status](https://travis-ci.com/nshayanfar/neshan-services-python.svg?branch=master)](https://travis-ci.org/nshayanfar/neshan-services-python)
 [![PyPI version](https://badge.fury.io/py/neshan.svg)](https://badge.fury.io/py/neshan.svg)
 
 ## Description

@@ -1,7 +1,4 @@
 #
-# Copyright 2014 Google Inc. All rights reserved.
-#
-#
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not
 # use this file except in compliance with the License. You may obtain a copy of
 # the License at
@@ -20,8 +17,8 @@ Core client functionality, common across all API requests (including performing
 HTTP requests).
 """
 
-from neshan.places import places
-from neshan.roads import snap_to_roads
+from neshan.places import search_places
+from neshan.roads import map_matching
 from neshan.geocoding import reverse_geocode
 from neshan.distance_matrix import distance_matrix
 from neshan.directions import directions
@@ -301,11 +298,11 @@ Client.distance_matrix = make_api_method(distance_matrix)
 Client.reverse_geocode = make_api_method(reverse_geocode)
 #Client.geolocate = make_api_method(geolocate)
 #Client.timezone = make_api_method(timezone)
-Client.snap_to_roads = make_api_method(snap_to_roads)
+Client.map_matching = make_api_method(map_matching)
 #Client.nearest_roads = make_api_method(nearest_roads)
 #Client.speed_limits = make_api_method(speed_limits)
 #Client.snapped_speed_limits = make_api_method(snapped_speed_limits)
-Client.places = make_api_method(places)
+Client.search_places = make_api_method(search_places)
 
 
 def sign_hmac(secret, payload):
@@ -334,32 +331,9 @@ def urlencode_params(params):
 
     :rtype: string
     """
-    # urlencode does not handle unicode strings in Python 2.
-    # Firstly, normalize the values so they get encoded correctly.
-    params = [(key, normalize_for_urlencode(val)) for key, val in params]
-    # Secondly, unquote unreserved chars which are incorrectly quoted
+    params = [(key, val) for key, val in params]
+    # Unquote unreserved chars which are incorrectly quoted
     # by urllib.urlencode, causing invalid auth signatures. See GH #72
     # for more info.
     return requests.utils.unquote_unreserved(urlencode(params))
 
-
-try:
-    unicode
-    # NOTE(cbro): `unicode` was removed in Python 3. In Python 3, NameError is
-    # raised here, and caught below.
-
-    def normalize_for_urlencode(value):
-        """(Python 2) Converts the value to a `str` (raw bytes)."""
-        if isinstance(value, unicode):
-            return value.encode('utf8')
-
-        if isinstance(value, str):
-            return value
-
-        return normalize_for_urlencode(str(value))
-
-except NameError:
-    def normalize_for_urlencode(value):
-        """(Python 3) No-op."""
-        # urlencode in Python 3 handles all the types we are passing it.
-        return value

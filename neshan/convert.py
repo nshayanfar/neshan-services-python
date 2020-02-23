@@ -1,7 +1,4 @@
 #
-# Copyright 2014 Google Inc. All rights reserved.
-#
-#
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not
 # use this file except in compliance with the License. You may obtain a copy of
 # the License at
@@ -168,12 +165,8 @@ def _is_list(arg):
 
 
 def is_string(val):
-    """Determines whether the passed value is a string, safe for 2/3."""
-    try:
-        basestring
-    except NameError:
-        return isinstance(val, str)
-    return isinstance(val, basestring)
+    """Determines whether the passed value is a string."""
+    return isinstance(val, str)
 
 
 def time(arg):
@@ -210,7 +203,7 @@ def _has_method(arg, method):
 
 
 def components(arg):
-    """Converts a dict of components to the format expected by the Google Maps
+    """Converts a dict of components to the format expected by the Neshan
     server.
 
     For example:

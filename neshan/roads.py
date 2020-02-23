@@ -1,7 +1,4 @@
 #
-# Copyright 2015 Google Inc. All rights reserved.
-#
-#
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not
 # use this file except in compliance with the License. You may obtain a copy of
 # the License at
@@ -21,7 +18,7 @@ import neshan
 from neshan import convert
 
 
-def snap_to_roads(client, path):
+def map_matching(client, path):
     """Snaps a path to the most likely roads travelled.
 
     Takes points collected along a route, and returns a similar

@@ -1,7 +1,3 @@
-# This Python file uses the following encoding: utf-8
-#
-# Copyright 2016 Google Inc. All rights reserved.
-#
 #
 # Licensed under the Apache License, Version 2.0 (the "License"); you may not
 # use this file except in compliance with the License. You may obtain a copy of
@@ -42,7 +38,7 @@ class PlacesTest(_test.TestCase):
                       body='{"items": []}',
                       status=200, content_type='application/json;charset=UTF-8')
 
-        self.client.places('رستوران', location=self.location)
+        self.client.search_places('رستوران', location=self.location)
 
         self.assertEqual(1, len(responses.calls))
         self.assertURLEqual('%s?lat=36.268706&lng=59.610011&term=رستوران'
