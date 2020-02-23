@@ -22,6 +22,7 @@ from neshan.roads import map_matching
 from neshan.geocoding import reverse_geocode
 from neshan.distance_matrix import distance_matrix
 from neshan.directions import directions
+from neshan.maps import static_map
 import base64
 import collections
 from datetime import datetime
@@ -35,13 +36,8 @@ import random
 import time
 
 import neshan
+from urllib.parse import urlencode
 
-try:  # Python 3
-    from urllib.parse import urlencode
-except ImportError:  # Python 2
-    from urllib import urlencode
-
-_X_GOOG_MAPS_EXPERIENCE_ID = "X-Goog-Maps-Experience-ID"
 _USER_AGENT = "NeshanGeoApiClientPython/%s" % neshan.__version__
 _DEFAULT_BASE_URL = "https://api.neshan.org"
 
@@ -257,13 +253,12 @@ class Client(object):
 
         return body
 
-
-    def _generate_url(self,path, params):
+    def _generate_url(self, path, params):
         extra_params = getattr(self, "_extra_params", None) or {}
         if type(params) is dict:
             params = sorted(dict(extra_params, **params).items())
         else:
-            params = sorted(extra_params.items()) + params[:]    
+            params = sorted(extra_params.items()) + params[:]
         path = "?".join([path, urlencode_params(params)])
         return path
 
@@ -303,6 +298,7 @@ Client.map_matching = make_api_method(map_matching)
 #Client.speed_limits = make_api_method(speed_limits)
 #Client.snapped_speed_limits = make_api_method(snapped_speed_limits)
 Client.search_places = make_api_method(search_places)
+Client.static_map = make_api_method(static_map)
 
 
 def sign_hmac(secret, payload):
@@ -336,4 +332,3 @@ def urlencode_params(params):
     # by urllib.urlencode, causing invalid auth signatures. See GH #72
     # for more info.
     return requests.utils.unquote_unreserved(urlencode(params))
-

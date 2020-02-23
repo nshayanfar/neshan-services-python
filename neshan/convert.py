@@ -157,7 +157,7 @@ def _is_list(arg):
     """Checks if arg is list-like. This excludes strings and dicts."""
     if isinstance(arg, dict):
         return False
-    if isinstance(arg, str): # Python 3-only, as str has __iter__
+    if isinstance(arg, str):  # Python 3-only, as str has __iter__
         return False
     return (not _has_method(arg, "strip")
             and _has_method(arg, "__getitem__")

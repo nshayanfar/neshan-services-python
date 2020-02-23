@@ -14,11 +14,7 @@
 
 import unittest
 import codecs
-
-try: # Python 3
-    from urllib.parse import urlparse, parse_qsl
-except ImportError: # Python 2
-    from urlparse import urlparse, parse_qsl
+from urllib.parse import urlparse, parse_qsl
 
 
 class TestCase(unittest.TestCase):
